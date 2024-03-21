@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "serayuzgur.crates",
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "wayou.vscode-todo-highlight",
+        "alefragnani.bookmarks",
+        "christian-kohler.path-intellisense",
+        "humao.rest-client",
+        "ms-mssql.sql-bindings-vscode"
+    ]
+}
