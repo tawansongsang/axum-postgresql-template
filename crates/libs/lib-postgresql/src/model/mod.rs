@@ -5,7 +5,7 @@ pub mod user_info;
 
 use tracing::info;
 
-use self::error::Result;
+use self::error::{Result, Error};
 use self::store::{new_db_pool, Db};
 
 #[derive(Clone)]

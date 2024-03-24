@@ -1,4 +1,6 @@
 {
     "editor.formatOnSave": true,
     "bookmarks.saveBookmarksInProject": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 2000,
 }
