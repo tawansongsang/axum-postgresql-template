@@ -14,7 +14,7 @@ lib-auth = { version = "0.1.0", path = "../../libs/lib-auth" }
 tokio = { version = "1.36.0", features = ["full"] }
 serde = { version = "1.0.197", features = ["derive"] }
 serde_with = "3.7.0"
-sqlx = "0.7.4"
+sqlx = { version = "0.7.4", features = ["postgres", "runtime-tokio"] }
 tracing = "0.1.40"
 uuid = "1.8.0"
 time = { version = "0.3.34", features = ["serde"] }

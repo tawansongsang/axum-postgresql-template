@@ -1,5 +1,5 @@
 use core::panic;
-use std::sync::OnceLock;
+use std::{sync::OnceLock, time::Duration};
 
 // region:    --- Modules
 use lib_utils::envs::{get_env, get_env_parse};
@@ -17,11 +17,13 @@ pub fn core_config() -> &'static CoreConfig {
 #[allow(non_snake_case)]
 pub struct CoreConfig {
     // -- Db
-    pub DB_HOST: String,
-    pub DB_PORT: u16,
-    pub DB_NAME: String,
-    pub DB_USERNAME: String,
-    pub DB_PASSWORD: String,
+    DB_HOST: String,
+    DB_PORT: u16,
+    DB_NAME: String,
+    DB_USERNAME: String,
+    DB_PASSWORD: String,
+    DB_CONNECTION_TIMEOUT: u64,
+    DB_CONNECTION_POOLS: u32,
 }
 
 impl CoreConfig {
@@ -36,7 +38,30 @@ impl CoreConfig {
             DB_NAME: get_env("POSTGRES_DB")?,
             DB_USERNAME: get_env("POSTGRES_USER")?,
             DB_PASSWORD: get_env("POSTGRES_PASSWORD")?,
+            DB_CONNECTION_TIMEOUT: match get_env_parse::<u64>("POSTGRES_IDLE_TIMEOUT") {
+                Ok(idle_timeout) => idle_timeout,
+                Err(_) => 3600,
+            },
+            DB_CONNECTION_POOLS: match get_env_parse::<u32>("POSTGRES_POOLS") {
+                Ok(pools) => pools,
+                Err(_) => 3,
+            },
         })
+    }
+
+    pub fn get_connection_str(&self) -> String {
+        format!(
+            "postgres://{}:{}@{}/{}",
+            self.DB_USERNAME, self.DB_PASSWORD, self.DB_HOST, self.DB_NAME
+        )
+    }
+
+    pub fn get_connection_timeout(&self) -> Duration {
+        Duration::from_secs(self.DB_CONNECTION_TIMEOUT)
+    }
+
+    pub fn get_connection_pools(&self) -> u32 {
+        self.DB_CONNECTION_POOLS
     }
 
     pub fn print_env(&self) {

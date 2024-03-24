@@ -1,0 +1,13 @@
+[env]
+RUST_LOG = "debug"
+POSTGRES_HOST = "127.0.0.1"
+POSTGRES_PORT = "5432"
+POSTGRES_DB = "db_template"
+POSTGRES_USER = "postgres"
+POSTGRES_PASSWORD = "password"
+POSTGRES_IDLE_TIMEOUT = "600"                                                                                # 600 secs
+POSTGRES_POOLS = "3"
+SERVICE_PWD_KEY = "CKUGFOD9_2Qf6Pn3ZFRYgPYb8ht4vKqEG9PGMXTB7497bT0367DjoaD6ydFnEVaIRda0kKeBZVCT5Hb62m2sCA"
+SERVICE_TOKEN_KEY = "9FoHBmkyxbgu_xFoQK7e0jz3RMNVJWgfvbVn712FBNH9LLaAWS3CS6Zpcg6RveiObvCUb6a2z-uAiLjhLh2igw"
+SERVICE_TOKEN_DURATION_SEC = "1800"                                                                          # 30 minites
+SERVICE_WEB_FOLDER = "web-folder/"
